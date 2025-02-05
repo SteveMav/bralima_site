@@ -5,3 +5,8 @@ from . models import Product
 def products_views_all(request):
     products = Product.objects.all()
     return render(request, 'products/products.html', {'products': products})
+
+def products_views_detail(request, id):
+    product = Product.objects.get(id=id)
+    print(product)
+    return render(request, 'products/product_detail.html', {'product': product})

@@ -15,7 +15,7 @@
 <body>
     <input type="text" id="search" placeholder="Rechercher un produit...">
     <ul id="results"></ul>
-
+    
     <script>
         document.getElementById('search').addEventListener('input', function() {
             let query = this.value;
@@ -27,7 +27,10 @@
                     results.innerHTML = '';
                     data.forEach(item => {
                         let li = document.createElement('li');
-                        li.textContent = item.name;
+                        let a = document.createElement('a');
+                        a.href = `/products/${item.id}/`;
+                        a.textContent = item.name;
+                        li.appendChild(a);
                         results.appendChild(li);
                     });
                 });
@@ -36,5 +39,5 @@
             }
         });
     </script>
-</body>
+    </body>
 </html>
