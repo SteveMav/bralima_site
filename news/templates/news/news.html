@@ -1,0 +1,37 @@
+<input type="text" id="search" placeholder="Rechercher un produit...">
+<ul id="results"></ul>
+
+<script>
+    document.getElementById('search').addEventListener('input', function() {
+        let query = this.value;
+        if (query.length > 0) {
+            fetch(`/search/?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                let results = document.getElementById('results');
+                results.innerHTML = '';
+                data.forEach(item => {
+                    let li = document.createElement('li');
+                    li.textContent = item.name;
+                    results.appendChild(li);
+                });
+            });
+        } else {
+            document.getElementById('results').innerHTML = '';
+        }
+    });
+</script>
+
+
+
+{% for new in news %}
+
+<ul>
+
+    <li>{{new.title}}</li>
+    <li>{{new.content}}</li>
+
+</ul>
+
+
+{% endfor %}

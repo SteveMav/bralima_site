@@ -1,1 +1,40 @@
-je ne sais pas
+{% for company in company_info %}
+
+    {{company.slogan}}
+    {{company.history}}
+
+
+{% endfor %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche en temps réel</title>
+</head>
+<body>
+    <input type="text" id="search" placeholder="Rechercher un produit...">
+    <ul id="results"></ul>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let query = this.value;
+            if (query.length > 0) {
+                fetch(`/search/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let results = document.getElementById('results');
+                    results.innerHTML = '';
+                    data.forEach(item => {
+                        let li = document.createElement('li');
+                        li.textContent = item.name;
+                        results.appendChild(li);
+                    });
+                });
+            } else {
+                document.getElementById('results').innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
