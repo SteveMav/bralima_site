@@ -18,3 +18,15 @@ class CompanyInfo(models.Model):
 
     def __str__(self):
         return "Informations de l'entreprise"
+    
+class Image(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    event = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to="gallery/")
+    description = models.TextField(blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titre if self.titre else f"Image {self.id}"
+
+

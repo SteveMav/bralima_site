@@ -8,5 +8,4 @@ def products_views_all(request):
 
 def products_views_detail(request, id):
     product = Product.objects.get(id=id)
-    print(product)
     return render(request, 'products/product_detail.html', {'product': product})

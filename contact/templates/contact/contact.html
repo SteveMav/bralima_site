@@ -1,9 +1,3 @@
-{% for company in company_info %}
-
-    {{company.slogan}}
-    {{company.history}}
-
-{% endfor %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,6 +8,30 @@
 <body>
     <input type="text" id="search" placeholder="Rechercher un produit...">
     <ul id="results"></ul>
+    <h1>Formulaire de contact</h1>
+    <h3>
+        {% if messages %}
+            {%for message in messages%}
+                {{message}}
+            {%endfor%}
+        {% endif %}
+    </h3>
+    <form method="post" id="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Envoyer</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("form").addEventListener("submit", function(event) {
+                setTimeout(() => {
+                    this.reset();  // Réinitialiser le formulaire
+                }, 100);
+            });
+        });
+        </script>
+        
+    
     
     <script>
         document.getElementById('search').addEventListener('input', function() {
@@ -26,19 +44,9 @@
                     results.innerHTML = '';
                     data.forEach(item => {
                         let li = document.createElement('li');
-                        
                         let a = document.createElement('a');
                         a.href = `/products/${item.id}/`;
                         a.textContent = item.name;
-                        
-                        let img = document.createElement('img');
-                        img.src = item.image; 
-                        console.log(item);
-                        img.alt = item.name;
-                        img.style.width = '50px'; // Ajustez la taille de l'image selon vos besoins
-                        img.style.height = '50px'; // Ajustez la taille de l'image selon vos besoins
-                        
-                        li.appendChild(img);
                         li.appendChild(a);
                         results.appendChild(li);
                     });
@@ -48,5 +56,5 @@
             }
         });
     </script>
-</body>
-</html>
+
+
