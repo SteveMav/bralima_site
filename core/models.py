@@ -27,6 +27,6 @@ class Image(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.titre if self.titre else f"Image {self.id}"
+        return self.title if self.title else f"Image {self.id}"
 
 

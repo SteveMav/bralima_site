@@ -1,7 +1,6 @@
 <input type="text" id="search" placeholder="Rechercher un produit...">
 <ul id="results"></ul>
 
-
 <script>
     document.getElementById('search').addEventListener('input', function() {
         let query = this.value;
@@ -36,17 +35,11 @@
     });
 </script>
 
+{% for image in images %}
 
-
-{% for product in products %}
-
-<ul>
-
-    <li>{{product.name}}</li>
-    <li>{{product.description}}</li>
-    <img src="{{product.image}}" style="width: 80px; height:80px">
-
-</ul>
+    {{image.title}}
+    {{image.description}}
+    <img src="{{image.image.url}}" style="width: 80px; height:80px">
 
 
 {% endfor %}
