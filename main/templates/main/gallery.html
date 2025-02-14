@@ -35,11 +35,12 @@
     });
 </script>
 
-{% for image in images %}
+{% for event, images in grouped_images.items %}
 
-    {{image.title}}
-    {{image.description}}
-    <img src="{{image.image.url}}" style="width: 80px; height:80px">
-
+    <h3>{{ event }}</h3>
+    {% for image in images %}
+        <p>{{ image.description }}</p>
+        <img src="{{ image.image.url }}" alt="{{ image.title }}" style="width: 80px; height:80px" >
+    {% endfor %}
 
 {% endfor %}
