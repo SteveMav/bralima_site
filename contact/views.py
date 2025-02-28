@@ -8,7 +8,7 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            messages.success(request, 'Message envoyé avec succès')
+            messages.success(request, 'Message envoyé  avec succès')
             form.save()
             return redirect('contact:contact')
         else:
