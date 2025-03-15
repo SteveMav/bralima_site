@@ -19,4 +19,3 @@ def contact(request):
         form = ContactForm()   
     return render(request, 'contact/contact.html', {'form': form})
 
-# Create your views here.

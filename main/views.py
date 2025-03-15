@@ -5,7 +5,8 @@ from products.models import Product
 # Create your views here.
 def index(request):
     company_info = CompanyInfo.objects.all()
-    return render(request, 'main/index.html', {'company_info': company_info})
+    products = Product.objects.all()
+    return render(request, 'main/index.html', {'company_info': company_info, 'products': products})
 
 def search(request):
     query = request.GET.get('q', '')
