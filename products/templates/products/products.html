@@ -1,3 +1,4 @@
+{% load static %}
 <input type="text" id="search" placeholder="Rechercher un produit...">
 <ul id="results"></ul>
 
@@ -38,19 +39,232 @@
 
 
 
-{% for product in products %}
 
-<ul>
+<!DOCTYPE html>
+<html lang="en">
 
-    <li>{{product.name}}</li>
-    <li>{{product.description}}</li>
-    {% if product.image %}
-        <img src="{{product.image.url}}" style="width: 80px; height:80px">
-    
-    {% endif %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-</ul>
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href= "{% static '/css/swiper-bundle.min.css' %}">
 
-{% endfor %}
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+    <!--=============== GOOGLE FONTS ===============-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Bralima - Nos Produits</title>
+</head>
+<body>
+ 
+  <header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            Bralima <i class='bx bx-beer'></i>
+        </a>
+        <div class="nav__menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="#home" class="nav__link">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-building-house'></i>
+                        <span>Communication</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-award'></i>
+                        <span>Entreprise</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-phone'></i>
+                        <span>A propos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bouton changer thème -->
+
+        <i class='bx bx-moon change-theme' id="theme-button"></i>
+        <a href="#" class="button nav__button">
+            Commander
+        </a>
+    </nav>
+</header>
+<br><br><br>
+
+  <section class="products-section" id="products">
+    <h2>Nos Produits</h2>
+    <div class="products-grid">
+  <!-- Produit Cards -->
+  {% for product in products %}
+  <a href="{% url 'products:products_views_detail' product.id %}">
+  <div class="product-card">
+    <div class="card-container">
+      <div class="card">
+        <div class="img-content">
+          {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% endif %}
+        </div>
+        <div class="content">
+          <p class="heading">{{ product.name }}</p>
+          <p>
+            {{ product.description|default:"Description non disponible." }}
+          </p>
+          <center>
+            <button>
+              <span>Continue</span> 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 74 74"
+                height="34"
+                width="34"
+              >
+                <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
+                <path
+                  fill="black"
+                  d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+                ></path>
+              </svg>
+            </button>
+
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+
+  {% endfor %}
+      
+      </div>
+    </div>
+  </section>
+
+  <button id="scrollToTopBtn"><i class="ri-arrow-up-s-line"></i></button>
+
+  <footer class="footer section">
+    <div class="footer__container container grid">
+        <div>
+            <a href="#" class="footer__logo">
+                Bralima <i class='bx bx-beer'></i>
+            </a>
+            <p class="footer__description">
+                Our vision is to make all people <br>
+                the best place to live for them.
+            </p>
+        </div>
+        <div class="footer__content">
+            <div>
+                <h3 class="footer__title">
+                    About
+                </h3>
+                <ul class="footer__links">
+                    <ul>
+                        <a href="#" class="footer__link">About Us</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Features</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">News & Blog</a>
+                    </ul>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer__title">
+                    Company
+                </h3>
+                <ul class="footer__links">
+                    <ul>
+                        <a href="#" class="footer__link">How We Work?</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Capital</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Security</a>
+                    </ul>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer__title">
+                    Support
+                </h3>
+                <ul class="footer__links">
+                    <ul>
+                        <a href="#" class="footer__link">FAQs</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Support center</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Contact Us</a>
+                    </ul>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer__title">
+                    Follow us
+                </h3>
+                <ul class="footer__social">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                        <i class='bx bxl-facebook-circle'></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                        <i class='bx bxl-instagram-alt'></i>
+                    </a>
+                    <a href="https://www.pinterest.com/" target="_blank" class="footer__social-link">
+                        <i class='bx bxl-pinterest'></i>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer__info container">
+        <div class="footer__copy">
+            &#169; Yugen. Tous droits réservés.
+        </div>
+        <div class="footer__privacy">
+            <a href="#">Terms & Agreements</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+  
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class='bx bx-chevrons-up'></i>
+  </a>
+
+  <!--=============== SCROLLREVEAL ===============-->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!--=============== SWIPER JS ===============-->
+  <script src="{% static '/javascript/swiper-bundle.min.js' %}"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="{% static 'javascript/main.js' %}"></script>
+</body>
+
+</html>

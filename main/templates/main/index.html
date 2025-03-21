@@ -30,21 +30,21 @@
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="#" class="nav__logo">
+            <a href="/" class="nav__logo">
                 Bralima <i class='bx bx-beer'></i>
             </a>
             <div class="nav__menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="#home" class="nav__link">
+                        <a href="/" class="nav__link">
                             <i class='bx bx-home-alt-2'></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li class="nav__item">
-                        <a href="#" class="nav__link">
+                        <a href="/products" class="nav__link">
                             <i class='bx bx-building-house'></i>
-                            <span>Communication</span>
+                            <span>Nos produits</span>
                         </a>
                     </li>
                     <li class="nav__item">
@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav__item">
-                        <a href="#" class="nav__link">
+                        <a href="/about" class="nav__link">
                             <i class='bx bx-phone'></i>
                             <span>A propos</span>
                         </a>
@@ -130,6 +130,7 @@
                 <div class="popular__container swiper mySwiper">
                     <div class="swiper-wrapper">
                         {% for product in products %}
+                        <a href="{% url 'products:products_views_detail' product.id %}">
                         <article class="popular__card swiper-slide">
                             {% if product.image %}
                             <img src="{{product.image.url}}" alt="" class="popular__img">
@@ -143,6 +144,7 @@
                                 </p>
                             </div>
                         </article>
+                        </a>
                         {% endfor %}
 
                         
@@ -360,20 +362,18 @@
         </section>
 
         <!--==================== SUBSCRIBE ====================-->
+
+        {% for company in company_info %}
         <section class="subscribe section">
             <div class="subscribe__container container">
-                <h1 class="subscribe__title">Bralima filiale du Groupe HEINEKEN</h1>
-                <p class="subscribe__description">
-                    L’histoire de ‘‘La Brasserie de Léopoldville’’ créée le 25 octobre 1923,
-                    est étroitement liée à celle de la République Démocratique du Congo. 
-                    Depuis plus de 94 ans, Bralima partage avec les Congolais des moments 
-                    exceptionnels et inoubliables grâce à ses différentes boissons. De l’époque coloniale, 
-                    à l’indépendance, du Congo à la RDC en passant par le Zaïre, 
-                    elle a toujours tenu ses promesses.
-                </p>
-                <a href="#" class="button subscribe__button">Plus...</a>
+            <h1 class="subscribe__title">Bralima filiale du Groupe HEINEKEN</h1>
+            <p class="subscribe__description">
+               {{ company.history|slice:":200" }}...
+            </p>
+            <a href="{% url 'main:about'%}" class="button subscribe__button">Plus...</a>
             </div>
         </section>
+        {% endfor %}
     </main>
 
     <!--==================== FOOTER ====================-->

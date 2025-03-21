@@ -1,3 +1,4 @@
+{% load static %}
 <input type="text" id="search" placeholder="Rechercher un produit...">
 <ul id="results"></ul>
 
@@ -25,11 +26,248 @@
     });
 </script>
 
-<ul>
+<!DOCTYPE html>
+<html lang="en">
 
-    <li>{{product.name}}</li>
-    <li>{{product.description}}</li>
-    <img src="{{product.image.url}}" style="width: 80px; height:80px">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href= "{% static '/css/swiper-bundle.min.css' %}">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+    <!--=============== GOOGLE FONTS ===============-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Bralima - Nos Produits</title>
+</head>
+<body>
+ 
+  <header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            Bralima <i class='bx bx-beer'></i>
+        </a>
+        <div class="nav__menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="#home" class="nav__link">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-building-house'></i>
+                        <span>Communication</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-award'></i>
+                        <span>Entreprise</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-phone'></i>
+                        <span>A propos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bouton changer thème -->
+
+        <i class='bx bx-moon change-theme' id="theme-button"></i>
+        <a href="#" class="button nav__button">
+            Commander
+        </a>
+    </nav>
+</header>
 
 
-</ul>
+        <!--==================== HOME ====================-->
+        <section class="home section" id="home">
+          <div class="home__container container grid">
+            <div class="home__images_product">
+              
+              <div class="home__img_product">
+                {% if product.image%}
+                  <img src="{{product.image.url}}" alt="">
+                  {% endif %}
+              </div>
+          </div>
+              <div class="home__content">
+                  <div class="home__data">
+                      <h1 class="home__title">
+                          {{product.name}}<br> <br>
+                          Biere forte pour les mal alpha<br>
+                      </h1>
+                      <p class="home__description">
+                          Nous offront des produits de grande qualité, et ce depuis 1923
+                      </p>
+                  </div>
+                  
+              </div>
+              
+
+          </div>
+      </section>
+
+
+      <section class="popular section" id="popular">
+        <div class="container">
+            <span class="section__subtitle">Nos produis</span>
+            <h2 class="section__title">
+                Les plus demandés <span>.</span>
+            </h2>
+            <div class="popular__container swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for product in products%}
+                    <article class="popular__card swiper-slide">
+                        {% if product.image%}
+                        <img src="{{product.image.url}}" alt="" class="popular__img">
+                        {% endif %}
+                        <div class="popular__data">
+                            <h2 class="popular__price"><span>.</span>{{product.price}}</h2>
+                            <h3 class="popular__title">{{produt.name}}</h3>
+                            <p class="popular__description">
+                                ‘‘Une affaire d'homme’’
+                                Lancée sur le marché congolais en 1997
+                            </p>
+                        </div>
+                    </article>
+                    {% endfor %}
+
+                    
+                </div>
+                <div class="swiper-button-next">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+                <div class="swiper-button-prev">
+                    <i class='bx bx-chevron-left'></i>
+                </div>
+                <a class="see__product">
+                    Voir tout <i class='bx bx-chevron-right'></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+  <footer class="footer section">
+    <div class="footer__container container grid">
+        <div>
+            <a href="#" class="footer__logo">
+                Bralima <i class='bx bx-beer'></i>
+            </a>
+            <p class="footer__description">
+                Our vision is to make all people <br>
+                the best place to live for them.
+            </p>
+        </div>
+        <div class="footer__content">
+            <div>
+                <h3 class="footer__title">
+                    About
+                </h3>
+                <ul class="footer__links">
+                    <ul>
+                        <a href="#" class="footer__link">About Us</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Features</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">News & Blog</a>
+                    </ul>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer__title">
+                    Company
+                </h3>
+                <ul class="footer__links">
+                    <ul>
+                        <a href="#" class="footer__link">How We Work?</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Capital</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Security</a>
+                    </ul>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer__title">
+                    Support
+                </h3>
+                <ul class="footer__links">
+                    <ul>
+                        <a href="#" class="footer__link">FAQs</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Support center</a>
+                    </ul>
+                    <ul>
+                        <a href="#" class="footer__link">Contact Us</a>
+                    </ul>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="footer__title">
+                    Follow us
+                </h3>
+                <ul class="footer__social">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                        <i class='bx bxl-facebook-circle'></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                        <i class='bx bxl-instagram-alt'></i>
+                    </a>
+                    <a href="https://www.pinterest.com/" target="_blank" class="footer__social-link">
+                        <i class='bx bxl-pinterest'></i>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer__info container">
+        <div class="footer__copy">
+            &#169; Yugen. Tous droits réservés.
+        </div>
+        <div class="footer__privacy">
+            <a href="#">Terms & Agreements</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+  
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class='bx bx-chevrons-up'></i>
+  </a>
+
+  <!--=============== SCROLLREVEAL ===============-->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!--=============== SWIPER JS ===============-->
+  <script src="{% static '/javascript/swiper-bundle.min.js' %}"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="{% static 'javascript/main.js' %}"></script>
+</body>
+
+</html>

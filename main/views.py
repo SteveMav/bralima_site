@@ -27,3 +27,7 @@ def gallery(request):
             grouped_images[event] = []
         grouped_images[event].append(image)
     return render(request, 'main/gallery.html', {'grouped_images': grouped_images})
+
+def about(request):
+    company_info = CompanyInfo.objects.all()
+    return render(request, 'main/about.html', {'company_info': company_info})

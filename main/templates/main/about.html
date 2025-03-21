@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href= "{% static '/css/swiper-bundle.min.css' %}">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+    <!--=============== GOOGLE FONTS ===============-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Bralima | Leader sur le marché</title>
+</head>
+<body>
+  <header class="header" id="header">
+    <nav class="nav container">
+        <a href="/" class="nav__logo">
+            Bralima <i class='bx bx-beer'></i>
+        </a>
+        <div class="nav__menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="/" class="nav__link">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-building-house'></i>
+                        <span>Communication</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#" class="nav__link">
+                        <i class='bx bx-award'></i>
+                        <span>Entreprise</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/about" class="nav__link">
+                        <i class='bx bx-phone'></i>
+                        <span>A propos</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bouton changer thème -->
+
+        <i class='bx bx-moon change-theme' id="theme-button"></i>
+        <a href="#" class="button nav__button">
+            Commander
+        </a>
+    </nav>
+</header>
+{% for company in company_info %}
+    <section>
+        <div class="image-container">
+            <img src="{{company.logo.url}}" alt="#">
+        </div>
+        <div class="about-us">
+            <h1>Qui sommes-nous ?</h1>
+            <p>{{company.history}}</p>
+        </div>
+        <div class="about-us1">
+         <div class="card">
+            <h2>Notre Mission</h2>
+            <p>
+                {{company.mission}}
+            </p>
+         </div>
+        </div>
+        <div class="about-us2">
+            <div class="about-us2__content">
+              <div class="about-us2__card">
+                <i class="ri-user-voice-line"></i>
+                <p>
+                  Mot du DG
+                  <br>
+                  <span class="quote">"{{company.word_of_director}}"</span>
+                </p>
+              </div>
+              
+            </div>
+          </div>
+    </section>
+    <footer class="footer section">
+      <div class="footer__container container grid">
+          <div>
+              <a href="#" class="footer__logo">
+                  Bralima <i class='bx bx-beer'></i>
+              </a>
+              <p class="footer__description">
+                  Our vision is to make all people <br>
+                  the best place to live for them.
+              </p>
+          </div>
+          <div class="footer__content">
+              <div>
+                  <h3 class="footer__title">
+                      About
+                  </h3>
+                  <ul class="footer__links">
+                      <ul>
+                          <a href="#" class="footer__link">About Us</a>
+                      </ul>
+                      <ul>
+                          <a href="#" class="footer__link">Features</a>
+                      </ul>
+                      <ul>
+                          <a href="#" class="footer__link">News & Blog</a>
+                      </ul>
+                  </ul>
+              </div>
+              {% endfor %}
+
+              <div>
+                  <h3 class="footer__title">
+                      Company
+                  </h3>
+                  <ul class="footer__links">
+                      <ul>
+                          <a href="#" class="footer__link">How We Work?</a>
+                      </ul>
+                      <ul>
+                          <a href="#" class="footer__link">Capital</a>
+                      </ul>
+                      <ul>
+                          <a href="#" class="footer__link">Security</a>
+                      </ul>
+                  </ul>
+              </div>
+
+              <div>
+                  <h3 class="footer__title">
+                      Support
+                  </h3>
+                  <ul class="footer__links">
+                      <ul>
+                          <a href="#" class="footer__link">FAQs</a>
+                      </ul>
+                      <ul>
+                          <a href="#" class="footer__link">Support center</a>
+                      </ul>
+                      <ul>
+                          <a href="#" class="footer__link">Contact Us</a>
+                      </ul>
+                  </ul>
+              </div>
+
+              <div>
+                  <h3 class="footer__title">
+                      Follow us
+                  </h3>
+                  <ul class="footer__social">
+                      <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                          <i class='bx bxl-facebook-circle'></i>
+                      </a>
+                      <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                          <i class='bx bxl-instagram-alt'></i>
+                      </a>
+                      <a href="https://www.pinterest.com/" target="_blank" class="footer__social-link">
+                          <i class='bx bxl-pinterest'></i>
+                      </a>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="footer__info container">
+          <div class="footer__copy">
+              &#169; Yugen. Tous droits réservés.
+          </div>
+          <div class="footer__privacy">
+              <a href="#">Terms & Agreements</a>
+              <a href="#">Privacy Policy</a>
+          </div>
+      </div>
+  </footer>
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class='bx bx-chevrons-up'></i>
+  </a>
+
+  <!--=============== SCROLLREVEAL ===============-->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!--=============== SWIPER JS ===============-->
+  <script src="{% static '/javascript/swiper-bundle.min.js' %}"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="{% static 'javascript/main.js' %}"></script>
+  <!--=============== PROGRESS BAR ===============--></body>
+
+</html>
